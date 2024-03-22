@@ -11,6 +11,7 @@
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/brython@3.12.2/brython_stdlib.js">
     </script>
+  
     <link href="mystyle.css" type="text/css" rel="stylesheet">
   </head>
 
@@ -19,7 +20,17 @@
    <h2> YOUR NAME</h2>
    <img src="me.png" alt="me" width="50px">
    <p> Brief BIO</p>
+<script>
+  from browser import document, html
 
+logo = "6.png"
+
+def insert_image(event):
+    document["zone9"].clear()
+    document["zone9"] <= html.IMG(src=logo, height=50)
+
+document["button9"].bind("click", insert_image)
+</script>
  
   </body>
 

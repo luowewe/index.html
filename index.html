@@ -20,16 +20,46 @@
    <h2> YOUR NAME</h2>
    <img src="me12.png" alt="me" width="50px">
    <p> Brief BIO</p>
+
+    <div id="description" style="background-color:#700;padding:10px;color:#FFF;"></div>
+<p></p>
+<img src="6.png" width ="400" height ="400" alt="Happy Family" usemap="#familymap" />
+<p></p>
+<map name="familymap" id="familymap">
+</map>
 <script type="text/python">
-  from browser import document, html
+from browser import document, html
 
-logo = "6.png"
+def writetext(txt):
+    # write text in the description zone (white on red)
+    document["description"].text = txt
 
-def insert_image(event):
-    document["zone9"].clear()
-    document["zone9"] <= html.IMG(src=logo, height=50)
+coords = [
+    (0, 0, 160, 95),
+    (180, 0, 400, 165),
+    (0, 120, 180, 400),
+    (175, 235, 270, 400)
+]
 
-document["button9"].bind("click", insert_image)
+messages = ["This plane was flying to wonderland in a sunny day",
+    "The Sun and the gas giant planets like Jupiter are by far the largest \
+    objects in our Solar System.",
+    "This is me or you.",
+    "Dennis the menace!!!!!!!!"]
+prompt = "Mouse over the items in the image to see the different \
+    descriptions."
+
+writetext(prompt)
+
+for coord, msg in zip(coords, messages):
+    # define areas in the image
+    area = html.AREA(shape="rect", coords=coord)
+
+    # define actions when mouse moves over or out of the area
+    area.bind('mouseover', lambda ev, msg=msg:writetext(msg))
+    area.bind('mouseout', lambda ev:writetext(prompt))
+
+    document["familymap"] <= area
 </script>
  
   </body>
